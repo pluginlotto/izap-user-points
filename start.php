@@ -24,7 +24,7 @@ function func_izap_start_giving_points() {
     func_init_plugin_byizap(array('plugin' => array('name' => GLOBAL_IZAP_USER_POINTS_PLUGIN)));
   }else{
     register_error('This plugin needs izap-elgg-bridge');
-    disable_plugin('izap-user-points');
+    disable_plugin(GLOBAL_IZAP_USER_POINTS_PLUGIN);
   }
 }
 
