@@ -22,7 +22,7 @@ if($point_settings) {
 }
 ?>
 <div class="contentWrapper">
-  <form action="<?php echo func_get_actions_path_byizap(array('plugin' => 'izap-user-points'))?>save_admin_settings" method="POST">
+  <form action="<?php echo IzapBase::getFormAction('save_admin_settings', GLOBAL_IZAP_USER_POINTS_PLUGIN)?>" method="POST">
     <?php echo elgg_view('input/securitytoken');?>
     <?php
     foreach($registered_objects as $object_subtype):

@@ -96,5 +96,10 @@ class IzapUserpointsController extends IzapController {
 
     $this->drawPage();
   }
+
+  public function actionSettings(){
+    $this->render(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/forms/admin_settings');
+
+  }
 }
 
