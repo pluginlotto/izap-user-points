@@ -52,6 +52,7 @@ class IzapUserPoints {
       if(!$user) {
         $user = get_loggedin_user();
       }
+     
       $user->izap_points = (int)($user->izap_points) + $point;
     }
   }
@@ -95,7 +96,15 @@ class IzapUserPoints {
     }
   }
 
-  public static function getUserPoints(ElggUser $user) {
+  public static function getUserPoints(ElggUser $user = null) {
+    if(!elgg_instanceof($user, 'user')) {
+      $user = elgg_get_logged_in_user_entity();
+    }
+
+    if(!$user) {
+      return 0;
+    }
+    
     $points = (int)$user->izap_points;
     return (($points < 0) ? 0 : $points);
   }

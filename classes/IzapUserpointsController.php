@@ -17,7 +17,7 @@ class IzapUserpointsController extends IzapController {
 
   public function  __construct($page) {
     parent::__construct($page);
-
+$this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/user-stats');
     $this->page_elements['filter']='';
   //  $this->page_elements['buttons']='';
       if(elgg_is_admin_logged_in()) {
@@ -41,19 +41,20 @@ class IzapUserpointsController extends IzapController {
             'full_view' => FALSE,
             'metadata_name_value_pairs' => array(
                     'name' => 'izap_points',
-                    'value' => '0',
+                    'value' => 0,
                     'operand' => '>='
             ),
             'order_by_metadata' => array(
                     array(
                             'name' => 'izap_points',
                             'direction' => 'desc',
+                            'as' => 'integer'
                     ),
             ),
             'order_by' => ''
     );
 
-    $this->page_elements['content'] = elgg_list_entities($options);
+    $this->page_elements['content'] = elgg_list_entities_from_metadata($options);
     $this->drawPage();
   }
 
@@ -65,6 +66,8 @@ class IzapUserpointsController extends IzapController {
     
     $title=elgg_echo('izap-user-points:view_offer');
     $this->page_elements['title']=$title;
+    $this->widgets = array();
+    $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/user-stats',array('entity' => $offer));
     $content=elgg_view_entity($offer, array('full_view' => TRUE));
     $this->page_elements['content']=$content;
     $this->drawPage();

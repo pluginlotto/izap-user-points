@@ -24,6 +24,9 @@ $coupons = izap_get_offer_coupons();
       <tr>
         <td><?php echo elgg_echo('izap-user-points:coupon_code')?></td>
         <td><?php echo elgg_echo('izap-user-points:username')?></td>
+        <td><?php echo elgg_echo('izap-user-points:coupon_price')?></td>
+        <td><?php echo elgg_echo('izap-user-points:points_used')?></td>
+        <td><?php echo elgg_echo('izap-user-points:due_amount')?></td>
         <td><?php echo elgg_echo('izap-user-points:time_registered')?></td>
         <td><?php echo elgg_echo('izap-user-points:used')?></td>
       </tr>
@@ -33,8 +36,11 @@ $coupons = izap_get_offer_coupons();
       foreach($coupons as $coupon) {
         ?>
       <tr>
-        <td><?php echo $coupon['coupon_code']?></td>
+        <td><b><?php echo $coupon['offer_title']?></b></br><?php echo $coupon['coupon_code']?></td>
         <td><?php echo $coupon['username']?></td>
+        <td><?php echo (int)$coupon['coupon_price'] ?></td>
+        <td><?php echo (int)$coupon['points_used'] ?></td>
+        <td><?php echo $coupon['to_be_paid'] ?></td>
         <td><?php echo date('d M, Y', $coupon['time_registered']);?></td>
         <td>
           <?php echo $coupon['used'];
@@ -44,14 +50,14 @@ $coupons = izap_get_offer_coupons();
             <a
               href="<?php echo elgg_add_action_tokens_to_url(IzapBase::getFormAction('mark_as_used', GLOBAL_IZAP_USER_POINTS_PLUGIN) . '?coupon='.$coupon['coupon_code'].'');?>"
               title="<?php echo elgg_echo('izap-user-points:mark_as_used');?>"
-              rel="used_<?php echo $coupons['coupon_code']?>"><img src="<?php echo elgg_get_site_url() . 'mod/'.GLOBAL_IZAP_USER_POINTS_PLUGIN.'/_graphics/mark_used.gif'?>"/></a></span>
+              rel="used_<?php echo $coupons['coupon_code']?>"><img src="<?php echo elgg_get_site_url() . 'mod/'.GLOBAL_IZAP_USER_POINTS_PLUGIN.'/_graphics/mark_used.png'?>"/></a></span>
           <?php }else{?>
           <span id="used_<?php echo $coupons['coupon_code']?>">
             <a
               onclick="return confirm('<?php echo elgg_echo('izap-user-points:mark_as_unused')?>');"
               href="<?php echo elgg_add_action_tokens_to_url(IzapBase::getFormAction('mark_as_used', GLOBAL_IZAP_USER_POINTS_PLUGIN) . '?coupon='.$coupon['coupon_code'].'&status=no');?>"
               title="<?php echo elgg_echo('izap-user-points:mark_as_unused');?>"
-              rel="used_<?php echo $coupons['coupon_code']?>"><img src="<?php echo elgg_get_site_url() . 'mod/'.GLOBAL_IZAP_USER_POINTS_PLUGIN.'/_graphics/used.gif'?>"/></a></span>
+              rel="used_<?php echo $coupons['coupon_code']?>"><img src="<?php echo elgg_get_site_url() . 'mod/'.GLOBAL_IZAP_USER_POINTS_PLUGIN.'/_graphics/used.png'?>"/></a></span>
           <?php }?>
         </td>
       </tr>

@@ -21,24 +21,25 @@
     <?php
     echo elgg_echo('izap-user-points:points_required') . ': ' . $vars['entity']->point_value;
 
-    if($vars['entity']->canBeDeleted()) {
+    if($vars['entity']->canBeDeleted() && elgg_is_admin_logged_in()) {
       echo ' | ';
       echo IzapBase::deleteLink(array(
       'guid' => $vars['entity']->guid,
       'text' => elgg_echo('izap-user-points:delete'),
-      'confirm' => 'DO you want to delete it',
+      'confirm' => 'Do you want to delete it',
       ));
 
     }
 
-    if($vars['entity']->canUserBuy()) {
+    //if($vars['entity']->canUserBuy()) {
       echo ' | ';
-      echo '<a href="'.$vars['entity']->buyHref().'"><b>';
+     // echo '<a href="'.$vars['entity']->buyHref().'"><b>';
+       echo '<a href="'.$vars['entity']->geturl().'"><b>';
       echo elgg_echo('izap-user-points:get_code');
       echo '</b></a>';
-    }else {
-
-    }
+//    }else {
+//
+//    }
     ?>
   </div>
 </div>

@@ -13,7 +13,7 @@
  */
 
 
-$coupon=elgg_extract('entity',$vars);
+$coupon=get_entity(get_input('guid'));
 $form_values=IzapBase::getFormValues(array('entity'=>$coupon,'plugin'=>GLOBAL_IZAP_USER_POINTS_PLUGIN));
 $form = '';
 $form .= IzapBase::input('text', array(
@@ -42,6 +42,42 @@ $form.=IzapBase::input('text',array(
   'internalname'=>'attributes[_point_value]',
   'value'=>$form_values->point_value
 ));
+
+$form .= IzapBase::input('text',array(
+    'input_title' => elgg_echo('izap-user-points:per_unit_value'),
+    'internalname' => 'attributes[per_unit_value]',
+    'value' => $$form_values->per_unit_value
+));
+
+$form .='<p> <label>'.elgg_echo('izap-user-points:allow_to_point_bank').'<br/>';
+
+$form .= elgg_view('input/dropdown' ,array(
+    //'input_title' => elgg_echo('izap-user-points:allow_to_point_bank'),
+    'internalname' => 'attributes[point_bank_allowed]',
+    'value' => $form_values->point_bank_allowed,
+    'internalid' => "point_bank",
+    'options_values' =>array(
+        'yes' => elgg_echo('izap-elgg-bridge:yes'),
+        'no' => elgg_echo('izap-elgg-bridge:no')
+    )
+));
+
+$form .= '</label></p>';
+
+$form .= '<p> <label>'.elgg_echo('izap-user-points:partial_redemption_allowed').'<br/>';
+$form .= elgg_view('input/dropdown',array(
+    //'input_title' => elgg_echo('izap-user-points:partial_redemption_allowed'),
+    'internalname' => 'attributes[partial_redemption_allowed]',
+    'value' => $form_values->partial_redemption_allowed,
+     'internalid' => 'partial_redemption',
+    'options_values' => array(
+        'yes' => elgg_echo('izap-elgg-bridge:yes'),
+        'no' => elgg_echo('izap-elgg-bridge:no')
+    )
+));
+
+$form .='</lebel></p>';
+
 $form .= IzapBase::input('access',array(
   'input_title'=>elgg_echo('izap-user-points:access_id'),
   'internalname'=>'attributes[access_id]',
@@ -69,3 +105,14 @@ $form .= elgg_view('input/hidden', array(
     echo elgg_view('input/form', array('body' => $form, 'action' => IzapBase::getFormAction('save_redeem_coupon', GLOBAL_IZAP_USER_POINTS_PLUGIN)));
   ?>
 </div>
+<script type="text/javascript">
+  $("#point_bank").change(function(){
+    if($('select#point_bank option:selected').val()=='no'){
+      $('select#partial_redemption').attr('disabled', true)
+    }
+    else
+      if($('select#point_bank option:selected').val()=='yes'){
+        $('select#partial_redemption').attr('disabled', false);
+      }
+  })
+</script>

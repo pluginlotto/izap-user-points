@@ -25,14 +25,15 @@ if(IzapBase::hasFormError()){
 $posted_array = IzapBase::getPostedAttributes();
 
 $redeem_offer = new IzapRedeemOffer($posted_array['guid']);
-$time = $posted_array['valid_till'];
-$time_str = mktime(23,59,59,$time['month'],$time['day'],$time['year']);
+$time = explode('/', $posted_array['valid_till']);
+$time_str = mktime(23,59,59,$time[0],$time[1],$time[2]);
 
 IzapBase::updatePostedAttribute('valid_till', $time_str);
 $redeem_offer->setAttributes();
 if($redeem_offer->save()) {
   elgg_clear_sticky_form(GLOBAL_IZAP_USER_POINTS_PLUGIN);
   system_message(elgg_echo('izap-user-points:success_creating_redeem_offer'));
+
 }else {
   register_error(elgg_echo('izap-user-points:error_creating_redeem_offer'));
 }
