@@ -31,3 +31,19 @@ function func_izap_user_point_increment_on_login($event, $object_type, $object) 
   $izap_user_point = new IzapUserPoints();
   $izap_user_point->eventBasedIncreasePoint($event);
 }
+
+function izap_get_offer_coupons() {
+  global $CONFIG;
+  
+  $sqlite = new IzapSqlite($CONFIG->dataroot . '/' . GLOBAL_IZAP_USER_POINTS_PLUGIN . '/'.GLOBAL_IZAP_USER_POINTS_SQLITE_DB.'.db');
+  $query = 'SELECT * FROM user_coupons WHERE expire_time > '.time().'';
+  return $sqlite->execute($query);
+}
+
+function izap_update_coupon_status_user_points($coupon_code, $status = 'yes') {
+  global $CONFIG;
+
+  $sqlite = new IzapSqlite($CONFIG->dataroot . '/' . GLOBAL_IZAP_USER_POINTS_PLUGIN . '/'.GLOBAL_IZAP_USER_POINTS_SQLITE_DB.'.db');
+  $query = 'UPDATE user_coupons SET used="'.$status.'" WHERE coupon_code = "'.$coupon_code.'"';
+  return $sqlite->execute($query);
+}

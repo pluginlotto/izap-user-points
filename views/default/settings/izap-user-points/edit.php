@@ -13,6 +13,25 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 ?>
+<p>
+  <label>
+    <?php
+    echo elgg_echo('izap-user-points:activate_site_offers');
+    echo elgg_view('input/pulldown', array(
+    'internalname' => 'params[izap_activate_site_offers]',
+    'value' => izap_plugin_settings(array(
+              'plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
+              'setting_name' => 'izap_activate_site_offers',
+              'value' => 'no',
+    )),
+    'options_values' => array(
+            'no' => elgg_echo('izap-elgg-bridge:no'),
+            'yes' => elgg_echo('izap-elgg-bridge:yes'),
+    ),
+    ));?>
+  </label>
+</p>
+
 <h1>
   <a href="<?php echo func_set_href_byizap(array(
   'plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,

@@ -16,6 +16,8 @@
 define('GLOBAL_IZAP_USER_POINTS_PLUGIN', 'izap-user-points');
 define('GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER', 'izap_user_points');
 define('GLOBAL_IZAP_USER_POINTS_PAGEHANDLER', 'userpoints');
+define('GLOBAL_IZAP_USER_POINTS_SUBTYPE', 'IzapRedeemOffer');
+define('GLOBAL_IZAP_USER_POINTS_SQLITE_DB', 'coupons002');
 
 function func_izap_start_giving_points() {
   if(is_plugin_enabled('izap-elgg-bridge')) {
@@ -24,6 +26,20 @@ function func_izap_start_giving_points() {
     register_error('This plugin needs izap-elgg-bridge');
     disable_plugin('izap-user-points');
   }
+}
+
+function izap_active_site_offers_user_points() {
+  $activate_site_offers = izap_plugin_settings(array(
+    'plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
+    'setting_name' => 'izap_activate_site_offers',
+    'value' => 'no',
+  ));
+
+  if($activate_site_offers == 'yes') {
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 register_elgg_event_handler('init', 'system', 'func_izap_start_giving_points');

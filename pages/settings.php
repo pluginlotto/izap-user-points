@@ -18,7 +18,9 @@ set_context('admin');
 admin_gatekeeper();
 $title = elgg_echo('izap-user-points:admin_settings');
 $area2 = elgg_view_title($title);
-$area2 .= func_izap_bridge_view('forms/admin_settings', array('plugin' => 'izap-user-points'));
-$body = elgg_view_layout('two_column_left_sidebar', '', $area2);
-page_draw($title, $body);
+$area2 .= $IZAPTEMPLATE->render('forms/admin_settings');
+$IZAPTEMPLATE->drawPage(array(
+  'title' => $title,
+  'area2' => $area2
+));
 

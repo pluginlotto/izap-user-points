@@ -13,12 +13,9 @@
 * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
-admin_gatekeeper();
 global $CONFIG;
-set_context('admin');
 $title = elgg_echo('izap-user-points:users_point');
 $area2 = elgg_view_title($title);
-//$area2 .= func_izap_bridge_view('home/list');
 $options = array(
         'type' => 'user',
         'full_view' => FALSE,
@@ -35,5 +32,7 @@ $options = array(
         ),
 );
 $area2 .= elgg_list_entities_from_metadata($options);
-$body = elgg_view_layout('two_column_left_sidebar', '', $area2);
-page_draw($title, $body);
+$IZAPTEMPLATE->drawPage(array(
+  'title' => $title,
+  'area2' => $area2
+));

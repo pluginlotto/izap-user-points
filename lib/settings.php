@@ -16,21 +16,43 @@
 global $CONFIG;
 
 /**
- * 
+ *
  */
 $INITIAL_URL = 'pg/' . GLOBAL_IZAP_USER_POINTS_PAGEHANDLER;
 
 return array(
         'plugin' => array(
                 'name' => 'izap-user-points',
-
-                'url_title' => 'userpoints',
+                'url_title' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
+                'layout' => 'two_column_left_sidebar',
+                'objects' => array(
+                        GLOBAL_IZAP_USER_POINTS_SUBTYPE => array(
+                                'type' => 'object',
+                                'class' => GLOBAL_IZAP_USER_POINTS_SUBTYPE,
+                                'searchable' => FALSE,
+                        ),
+                ),
 
                 'actions' => array(
                         GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER . '/save_admin_settings' => array(
                                 'file' => 'save_admin_settings.php',
                                 'admin_only' => TRUE,
-                        )
+                        ),
+
+                        GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER . '/save_redeem_coupon' => array(
+                                'file' => 'save_redeem_coupon.php',
+                                'admin_only' => TRUE,
+                        ),
+
+                        GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER . '/buy_offer' => array(
+                                'file' => 'buy_offer.php',
+                                'public' => FALSE,
+                        ),
+
+                        GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER . '/mark_as_used' => array(
+                                'file' => 'mark_as_used.php',
+                                'admin_only' => TRUE,
+                        ),
                 ),
 
                 'events' => array(
@@ -72,18 +94,39 @@ return array(
                         ),
                 ),
 
+                'menu' => array(
+                        $INITIAL_URL . '/site_offers/' => array(
+                                'title' => elgg_echo('izap-user-points:redeem_offers'),
+                                'active' => izap_active_site_offers_user_points(),
+                        )
+                ),
+
                 'submenu' => array(
                         'admin' => array(
                                 $INITIAL_URL . '/settings/' => array(
                                         'title' => elgg_echo('izap-user-points:admin_settings'),
                                         'admin_only' => TRUE,
-                                        'group_by' => 'USER_POINTS'
+                                        'groupby' => 'USER_POINTS'
                                 ),
 
-                                $INITIAL_URL . '/settings/' => array(
-                                        'title' => elgg_echo('izap-user-points:admin_settings'),
+                                $INITIAL_URL . '/redeem_coupon/' => array(
+                                        'title' => elgg_echo('izap-user-points:create_redeem_offer'),
                                         'admin_only' => TRUE,
-                                        'group_by' => 'USER_POINTS'
+                                        'groupby' => 'USER_POINTS'
+                                ),
+
+                                $INITIAL_URL . '/check_coupon/' => array(
+                                        'title' => elgg_echo('izap-user-points:check_coupon'),
+                                        'admin_only' => TRUE,
+                                        'groupby' => 'USER_POINTS'
+                                ),
+                        ),
+
+                        GLOBAL_IZAP_USER_POINTS_PAGEHANDLER => array(
+                                $INITIAL_URL . '/site_offers/' => array(
+                                        'title' => elgg_echo('izap-user-points:redeem_offers'),
+                                        'public' => FALSE,
+                                        'groupby' => 'USER_POINTS'
                                 ),
                         ),
                 ),
@@ -91,15 +134,15 @@ return array(
         ),
 
         'includes'=>array(
-                dirname(__FILE__) . '/classes' => array('class.IzapUserPoints.php'),
+                dirname(__FILE__) . '/classes' => array('class.IzapUserPoints.php', 'IzapRedeemOffer.php'),
                 dirname(__FILE__) . '/functions' => array('func.core.php'),
         ),
 
         'path' => array(
 
                 'www' => array(
-                        'page' => $CONFIG->wwwroot . 'pg/userpoints/',
-                        'images' => $CONFIG->wwwroot . 'mod/izap-user-points/_graphics/',
+                        'page' => $CONFIG->wwwroot . 'pg/'.GLOBAL_IZAP_USER_POINTS_PAGEHANDLER.'/',
+                        'images' => $CONFIG->wwwroot . 'mod/'.GLOBAL_IZAP_USER_POINTS_PLUGIN.'/_graphics/',
                         'action' => $CONFIG->wwwroot . 'action/' . GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER . '/',
                 ),
 

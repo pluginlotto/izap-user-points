@@ -31,3 +31,23 @@ background-color: #0054A7;
 -webkit-border-radius: 4px;
 -moz-border-radius: 4px;
 }
+
+.user_points_offer_bottom {
+border-top: 1px solid #DEDEDE;
+}
+
+.admin_statistics .search_input {
+font-size: 20px;
+}
+
+.admin_statistics table thead {
+background: #000000;
+color: #FFFFFF;
+font-weight: bold;
+}
+
+.admin_statistics table thead tr:hover {
+background: #000000;
+color: #FFFFFF;
+font-weight: bold;
+}

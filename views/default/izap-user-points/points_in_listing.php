@@ -14,7 +14,7 @@
  */
 
 $total_points = IzapUserPoints::getUserPoints($vars['entity']);
-if(get_context() == 'members' || get_context() == 'admin') {
+if(get_context() == 'members' || get_context() == 'admin' || get_context() == GLOBAL_IZAP_USER_POINTS_PAGEHANDLER) {
   ?>
 <div  class="points_highlight_list">
     <?php echo elgg_echo('izap-user-points:total_points') . ': <b>' . $total_points . '</b>' . '&nbsp "'.IzapUserPoints::getUserRank($total_points).'"';?>
