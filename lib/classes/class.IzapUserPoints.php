@@ -40,7 +40,8 @@ class IzapUserPoints {
       }else {
         $user = get_loggedin_user();
       }
-      $user->izap_points = (int)($user->izap_points) + $point;
+      $object->points_added = $point;
+      $user->izap_points = (int)($user->izap_points) + (int) ($object->points_added);
     }
   }
 
@@ -55,14 +56,13 @@ class IzapUserPoints {
   }
 
   public function decreasePoint($object) {
-    $point = (int)$this->point_array[$this->makePointString($object->getType(), $object->getSubtype())];
-    if($point) {
+    if((int)($object->points_added)) {
       if(method_exists($object, 'getOwnerEntity')) {
         $user = $object->getOwnerEntity();
       }else {
         $user = get_loggedin_user();
       }
-      $user->izap_points = (int)($user->izap_points) - $point;
+      $user->izap_points = (int)($user->izap_points) - (int)($object->points_added);
     }
   }
 
@@ -94,7 +94,8 @@ class IzapUserPoints {
   }
 
   public static function getUserPoints(ElggUser $user) {
-    return (int)$user->izap_points;
+    $points = (int)$user->izap_points;
+    return (($points < 0) ? 0 : $points);
   }
 
   public static function getRanks() {
