@@ -27,9 +27,6 @@ $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/user-stats');
               'url' => 'admin/izap-userpoints-section/redeem_coupon'
       ));
     }
-    else {
-      $this->page_elements['buttons']='';
-    }
   }
 
 
