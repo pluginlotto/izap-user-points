@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin_manifest>
+  <field key="author" value="iZAP" />
+  <field key="version" value="0.1" />
+  <field key="description" value="Point system for the user. Admin can define points for every entity created
+  by user. Requires 'izap-elgg-bridge' plugin." />
+  <field key="website" value="http://www.izap.in/" />
+  <field key="copyright" value="(C) iZAP Web Solutions" />
+  <field key="licence" value="Commercial" />
+  <field key="elgg_version" value="2010030101" />
+</plugin_manifest>
