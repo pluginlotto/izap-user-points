@@ -38,7 +38,7 @@ if($point_settings) {
                   elgg_echo('item:object:' . $object_subtype) => 'yes',
           ),
           ));
-          //echo up_echo('points');
+          //echo elgg_echo('izap-user-points:points');
           ?>
       </label>
         <?php
@@ -66,7 +66,7 @@ if($point_settings) {
                 elgg_echo('item:group') => 'yes',
         ),
         ));
-        //echo up_echo('points');
+        //echo elgg_echo('izap-user-points:points');
         ?>
       </label>
       <?php

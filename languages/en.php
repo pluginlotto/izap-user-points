@@ -14,21 +14,18 @@
  */
 
 
-$english = array(
-  'item:annotation' => 'Annotation (Comments, rating and all others)',
+add_translation('en', array(
+        'item:annotation' => 'Annotation (Comments, rating and all others)',
 
-  'izap-user-points:go_to_admin_settings' => 'Go to admin settings',
-  'izap-user-points:user_rank_rules' => 'Add rules for user ranks, add one rule per line {"name"|"for points less than"} i.e. <pre>New|100<br />Intermedate|1000</pre>',
-  'izap-user-points:admin_settings' => 'User points settings',
-  'izap-user-points:points' => 'Points',
-  'izap-user-points:users_point' => 'Users point',
-  'izap-user-points:total_points' => 'Total points',
-  'izap-user-points:login_point' => 'Point for every login',
+        'izap-user-points:go_to_admin_settings' => 'Go to admin settings',
+        'izap-user-points:user_rank_rules' => 'Add rules for user ranks, add one rule per line {"name"|"for points less than"} i.e. <pre>New|100<br />Intermedate|1000</pre>',
+        'izap-user-points:admin_settings' => 'User points settings',
+        'izap-user-points:points' => 'Points',
+        'izap-user-points:users_point' => 'Users point',
+        'izap-user-points:total_points' => 'Total points',
+        'izap-user-points:login_point' => 'Point for every login',
 
-  'izap-user-points:setting_saved' => 'Settings saved successfully.',
-  'izap-user-points:setting_not_saved' => 'Error saving settings for the plugin.',
-);add_translation('en', $english);
-
-function up_echo($key) {
-  return elgg_echo('izap-user-points:' . $key);
-}
+        'izap-user-points:setting_saved' => 'Settings saved successfully.',
+        'izap-user-points:setting_not_saved' => 'Error saving settings for the plugin.',
+        )
+);

@@ -15,6 +15,7 @@
 
 define('GLOBAL_IZAP_USER_POINTS_PLUGIN', 'izap-user-points');
 define('GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER', 'izap_user_points');
+define('GLOBAL_IZAP_USER_POINTS_PAGEHANDLER', 'userpoints');
 
 function func_izap_start_giving_points() {
   if(is_plugin_enabled('izap-elgg-bridge')) {

@@ -15,6 +15,11 @@
 
 global $CONFIG;
 
+/**
+ * 
+ */
+$INITIAL_URL = 'pg/' . GLOBAL_IZAP_USER_POINTS_PAGEHANDLER;
+
 return array(
         'plugin' => array(
                 'name' => 'izap-user-points',
@@ -69,7 +74,17 @@ return array(
 
                 'submenu' => array(
                         'admin' => array(
-                                'pg/userpoints/settings/' => array('title' => up_echo('admin_settings'), 'admin_only' => TRUE),
+                                $INITIAL_URL . '/settings/' => array(
+                                        'title' => elgg_echo('izap-user-points:admin_settings'),
+                                        'admin_only' => TRUE,
+                                        'group_by' => 'USER_POINTS'
+                                ),
+
+                                $INITIAL_URL . '/settings/' => array(
+                                        'title' => elgg_echo('izap-user-points:admin_settings'),
+                                        'admin_only' => TRUE,
+                                        'group_by' => 'USER_POINTS'
+                                ),
                         ),
                 ),
 

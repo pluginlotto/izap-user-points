@@ -49,9 +49,9 @@ foreach($posted_data as $type => $values) {
 //var_dump($posted_data['rank_rules']);
 $point_settings->description = serialize($activated_array);
 if($point_settings->save()) {
-  system_message(up_echo('setting_saved'));
+  system_message(elgg_echo('izap-user-points:setting_saved'));
 }else {
-  register_error(up_echo('setting_not_saved'));
+  register_error(elgg_echo('izap-user-points:setting_not_saved'));
 }
 
 // now finally save everything to the admin_settings

@@ -16,7 +16,7 @@
 admin_gatekeeper();
 global $CONFIG;
 set_context('admin');
-$title = up_echo('users_point');
+$title = elgg_echo('izap-user-points:users_point');
 $area2 = elgg_view_title($title);
 //$area2 .= func_izap_bridge_view('home/list');
 $options = array(

@@ -16,7 +16,7 @@
 $total_points = IzapUserPoints::getUserPoints($vars['entity']);
   ?>
 <div  class="points_highlight_profile">
-    <?php echo up_echo('total_points') . ': <b>' . $total_points . '</b>';?>
+    <?php echo elgg_echo('izap-user-points:total_points') . ': <b>' . $total_points . '</b>';?>
   <br />
   <?php echo IzapUserPoints::getUserRank($total_points);?>
 </div>
