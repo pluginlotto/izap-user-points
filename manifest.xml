@@ -7,5 +7,5 @@
   <field key="website" value="http://www.izap.in/" />
   <field key="copyright" value="(C) iZAP Web Solutions" />
   <field key="licence" value="Commercial" />
-  <field key="elgg_version" value="2010030101" />
+  <field key="elgg_version" value="2010030102" />
 </plugin_manifest>
