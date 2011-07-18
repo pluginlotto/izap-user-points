@@ -33,7 +33,7 @@ function func_izap_start_giving_points() {
   $CONFIG->valid_types_for_points = array('object', 'group', 'annotation');
 
   elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'func_user_points_in_main_profile');
-  //elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'func_user_points_in_main_profile');
+//  elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'func_user_points_in_main_profile');
 
   elgg_extend_view('user/status', GLOBAL_IZAP_USER_POINTS_PLUGIN . '/points_in_listing');
 
@@ -126,7 +126,7 @@ function func_user_points_in_main_profile($hook, $type, $return, $params) {
      $point_str .= sprintf(elgg_echo('izap-user:total_points'), $user->izap_points,IzapUserPoints::getUserRank($user->izap_points));
 //    $point_str .= elgg_echo('izap-user:total_points');
 //    $point_str .= ' ('.IzapUserPoints::getUserRank($points).')';
-    $item = new ElggMenuItem(GLOBAL_IZAP_USER_POINTS_PLUGIN, $point_str, '');
+    $item = new ElggMenuItem(GLOBAL_IZAP_USER_POINTS_PLUGIN, $point_str, '#');
     $return[] = $item;
   }
   return $return;
