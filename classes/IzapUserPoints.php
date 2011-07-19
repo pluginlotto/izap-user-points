@@ -116,7 +116,7 @@ class IzapUserPoints {
     if(sizeof($tmp_array)) {
       foreach($tmp_array as $rule) {
         $tmp_rule_array = explode('|', $rule);
-        $rules_array[$tmp_rule_array[1]] = $tmp_rule_array[0];
+        $rules_array[(int)$tmp_rule_array[1]] = $tmp_rule_array[0];
       }
     }
 
