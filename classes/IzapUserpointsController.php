@@ -17,6 +17,7 @@ class IzapUserpointsController extends IzapController {
 
   public function  __construct($page) {
     parent::__construct($page);
+    if(elgg_is_logged_in ())
 $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/user-stats');
     $this->page_elements['filter']='';
   //  $this->page_elements['buttons']='';
