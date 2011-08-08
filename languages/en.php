@@ -38,7 +38,7 @@ add_translation('en', array(
     'izap-user-points:error_creating_redeem_offer' => 'Error Creating offer',
     // site offers
     'izap-user-points:redeem_offers' => 'Site offers',
-    'izap-user-points:site_offers' => 'Site offers',
+    'izap-user-points:site_offers' => 'Site Offers',
     'izap-user-points:points_required' => 'Points required',
     'izap-user-points:get_code' => 'Avail/Buy Offer',
     'izap-user-points:error_buying_offer' => 'Error Processing your Offer',
@@ -82,6 +82,9 @@ add_translation('en', array(
     'item:object:IzapRedeemOffer' => 'Coupon offers',
     'izap-user-point:top_users' => 'Top Users',
     'izap-user-points:user-points' => 'Total points: ',
+    'izap-user-points:per_unit_value'=>'Per Unit Value',
+    'izap-user-points:allow_to_point_bank'=>'Allow point Bank',
+    'izap-user-points:partial_redemption_allowed'=>'Allow partial redemption ',
 
     //river
 

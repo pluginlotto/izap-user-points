@@ -47,7 +47,7 @@ function func_izap_start_giving_points() {
   if(IzapBase::pluginSetting(array(
               'plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
               'name' => 'izap_activate_site_offers'))=='yes'){
-  $menu_item = new ElggMenuItem('izap-user-points', elgg_echo('izap_user_points:site_offers'),
+  $menu_item = new ElggMenuItem('izap-user-points', elgg_echo('izap-user-points:site_offers'),
                   IzapBase::setHref(array(
                       'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
                       'action' => 'offers',
