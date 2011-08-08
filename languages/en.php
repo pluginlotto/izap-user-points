@@ -86,5 +86,7 @@ add_translation('en', array(
     //river
 
     'item:object:IzapRedeemOffer:singular' => 'Offer',
+    //admin stats
+    'izap-user-points' => 'Izap user points',
         )
 );

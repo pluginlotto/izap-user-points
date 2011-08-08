@@ -18,7 +18,7 @@ define('GLOBAL_IZAP_USER_POINTS_PLUGIN', 'izap-user-points');
 define('GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER', 'izap_user_points');
 define('GLOBAL_IZAP_USER_POINTS_PAGEHANDLER', 'userpoints');
 define('GLOBAL_IZAP_USER_POINTS_SUBTYPE', 'IzapRedeemOffer');
-define('GLOBAL_IZAP_USER_POINTS_SQLITE_DB', 'coupons01');
+define('GLOBAL_IZAP_USER_POINTS_SQLITE_DB', 'coupons02');
 
 function func_izap_start_giving_points() {
   global $CONFIG;

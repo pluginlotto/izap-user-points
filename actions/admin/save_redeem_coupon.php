@@ -25,9 +25,8 @@ if(IzapBase::hasFormError()){
 $posted_array = IzapBase::getPostedAttributes();
 
 $redeem_offer = new IzapRedeemOffer($posted_array['guid']);
-$time = explode('/', $posted_array['valid_till']);
-$time_str = mktime(23,59,59,$time[0],$time[1],$time[2]);
-
+$time = split("[\/-]",$posted_array['valid_till']);
+$time_str = mktime(23,59,59,$time[1],$time[2],$time[0]);
 IzapBase::updatePostedAttribute('valid_till', $time_str);
 $redeem_offer->setAttributes();
 if($redeem_offer->save()) {
