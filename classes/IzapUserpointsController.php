@@ -80,16 +80,16 @@ $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN.'/user-stats');
             'type' => 'object',
             'subtype' => GLOBAL_IZAP_USER_POINTS_SUBTYPE,
             'full_view' => FALSE,
-//            'metadata_name_value_pairs' => array(
-//                    'name' => 'valid_till',
-//                    'value' => time(),
-//                    'operand' => '>'
-//            ),
-//            'order_by_metadata' => array(
-//                    array(
-//                            'name' => 'valid_till',
-//                    ),
-//            ),
+            'metadata_name_value_pairs' => array(
+                   'name' => 'valid_till',
+                    'value' => time(),
+                   'operand' => '>'
+            ),
+           'order_by_metadata' => array(
+                   array(
+                           'name' => 'valid_till',
+                    ),
+           ),
     );
     $title = elgg_echo('izap-user-points:site_offers');
     $this->page_elements['title'] = $title;
