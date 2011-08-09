@@ -44,7 +44,7 @@ $form.=IzapBase::input('text',array(
 ));
 
 $form .= IzapBase::input('text',array(
-    'input_title' => elgg_echo('izap-user-points:per_unit_value'),
+    'input_title' => elgg_echo('izap-user-points:per_unit_value')." ".IzapBase::formattedCurrency(),
     'internalname' => 'attributes[per_unit_value]',
     'value' => $$form_values->per_unit_value
 ));

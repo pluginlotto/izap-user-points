@@ -82,7 +82,7 @@ add_translation('en', array(
     'item:object:IzapRedeemOffer' => 'Coupon offers',
     'izap-user-point:top_users' => 'Top Users',
     'izap-user-points:user-points' => 'Total points: ',
-    'izap-user-points:per_unit_value'=>'Per Unit Value',
+    'izap-user-points:per_unit_value'=>'Per Unit Value in',
     'izap-user-points:allow_to_point_bank'=>'Allow point Bank',
     'izap-user-points:partial_redemption_allowed'=>'Allow partial redemption ',
 
