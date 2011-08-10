@@ -39,15 +39,18 @@ $form .= '</label></p>';
 
 $form.=IzapBase::input('text',array(
   'input_title'=>elgg_echo('izap-user-points:point_value'),
-  'internalname'=>'attributes[_point_value]',
+  'internalname'=>'attributes[point_value]',
   'value'=>$form_values->point_value
 ));
 
+$form.= '<p>'.elgg_echo('izap-user-points:point_value_msg').'</p>';
+
 $form .= IzapBase::input('text',array(
-    'input_title' => elgg_echo('izap-user-points:per_unit_value')." ".IzapBase::formattedCurrency(),
+    'input_title' => elgg_echo('izap-user-points:per_unit_value')." ".$CONFIG->site_currency_name ,
     'internalname' => 'attributes[per_unit_value]',
-    'value' => $$form_values->per_unit_value
+    'value' => $form_values->per_unit_value
 ));
+$form.= '<p>'.elgg_echo('izap-user-points:per_unit_value_msg').'</p>';
 
 $form .='<p> <label>'.elgg_echo('izap-user-points:allow_to_point_bank').'<br/>';
 
@@ -63,7 +66,7 @@ $form .= elgg_view('input/dropdown' ,array(
 ));
 
 $form .= '</label></p>';
-
+$form.= '<p>'.elgg_echo('izap-user-points:allow_to_point_bank_msg').'</p>';
 $form .= '<p> <label>'.elgg_echo('izap-user-points:partial_redemption_allowed').'<br/>';
 $form .= elgg_view('input/dropdown',array(
     //'input_title' => elgg_echo('izap-user-points:partial_redemption_allowed'),

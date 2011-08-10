@@ -20,7 +20,7 @@
       if(elgg_instanceof($vars['entity'], 'object',GLOBAL_IZAP_USER_POINTS_SUBTYPE)){
               echo'<br/>';
       echo elgg_echo('izap-user-points:points_required') . ': ' . $vars['entity']->point_value;
-      echo '($'.$vars['entity']->point_value * $vars['entity']->per_unit_value.')';
+      echo '('.$CONFIG->site_currency_sign.' '.$vars['entity']->point_value * $vars['entity']->per_unit_value.')';
       }
 ?>
       </div>

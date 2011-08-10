@@ -79,7 +79,7 @@ if ($total_value > $total_available_points) {
 //
 //      }
 
-        if ($offer->point_bank_allowed == 'yes') { // if point bank is allowed
+        if ($offer->point_bank_allowed == 'yes' && $offer->point_value >0 ) { // if point bank is allowed
           if ($offer->partial_redemption_allowed == 'yes') {
             // can use both points and Money
             $points_text = elgg_view('input/text', array(
@@ -91,7 +91,7 @@ if ($total_value > $total_available_points) {
 
 
             $form .= '<div class="buy_partial"> Use ' . $points_text . ' points and pay <span id="amount_to_pay">' . $more_requied * $unit . '</span> <br /></div>';
-          } else if ($offer->partial_redemption_allowed == 'no') {
+          } else if ($offer->partial_redemption_allowed == 'no' && $offer->point_value >0  ) {
             // full money or full points
             if ($offer->point_value <= IzapUserPoints::getUserPoints()) {
               $more_requied = $total_value;
@@ -99,6 +99,9 @@ if ($total_value > $total_available_points) {
               echo elgg_echo('izap-user-points:avail');
               echo '</b></a>';
 
+            }else{
+
+              echo '<b>Free of cost</b>';
             }
 ?>
 
@@ -109,7 +112,7 @@ if ($total_value > $total_available_points) {
       ));
           }
         } // if user has to buy (or pay in money)
-        else if($offer->point_bank_allowed == 'no'){
+        else if($offer->point_bank_allowed == 'no' && $offer->point_value >0 ){
           //echo $total_value;echo $unit;exit;
           // can use money only
           $more_requied = $total_value;
@@ -132,7 +135,7 @@ if ($total_value > $total_available_points) {
                     'value' => $offer->point_value
                 ));
         $form .= elgg_view('input/submit', array(
-                    'value' => 'Buy with cash',
+                    'value' => 'Buy',
                     'js' => 'style="width:120px;height:27px;margin-left:35px;position:absolute;top:180px"'
                 ));
         $form = elgg_view('input/form', array(
@@ -148,6 +151,9 @@ if ($total_value > $total_available_points) {
 
   <script type ="text/javascript">
     $('#points_used').keyup(function(){
+      if($('#points_used').val()> <?php echo $total_value;?>){
+       $('#points_used').val(<?php echo $total_value;?>);
+      }
       var a = $('#points_used').val() * <?php echo $offer->per_unit_value ?>;
       var b = <?php echo $offer->per_unit_value * $offer->point_value ?>;
     var price = b-a;
