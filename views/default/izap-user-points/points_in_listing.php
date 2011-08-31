@@ -14,6 +14,6 @@
  */
 
 $total_points = IzapUserPoints::getUserPoints($vars['entity']);
-if(get_context() == 'members' || get_context() == 'admin' || get_context() == GLOBAL_IZAP_USER_POINTS_PAGEHANDLER) {
+if(elgg_get_context() == 'members' || elgg_get_context() == 'admin' || elgg_get_context() == GLOBAL_IZAP_USER_POINTS_PAGEHANDLER) {
   echo sprintf(elgg_echo('izap-user:total_points'), $total_points, IzapUserPoints::getUserRank($total_points));
 }

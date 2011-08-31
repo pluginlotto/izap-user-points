@@ -110,7 +110,7 @@ class IzapUserPoints {
   }
 
   public static function getRanks() {
-    $point_settings = get_entity(get_plugin_setting('setting_entity_guid', 'izap-user-points'));
+    $point_settings = get_entity(elgg_get_plugin_setting('setting_entity_guid', 'izap-user-points'));
     $admin_rules = $point_settings->rank_rules;
     $tmp_array = explode("\n", $admin_rules);
     if(sizeof($tmp_array)) {
