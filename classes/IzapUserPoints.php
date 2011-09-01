@@ -20,7 +20,7 @@ class IzapUserPoints {
   }
 
   public function getPointArray() {
-    $point_settings = get_entity(get_plugin_setting('setting_entity_guid', 'izap-user-points'));
+    $point_settings = get_entity(elgg_get_plugin_setting('setting_entity_guid', 'izap-user-points'));
     if(!$point_settings) {
       return FALSE;
     }

@@ -32,7 +32,7 @@ if($point_settings) {
     <p>
       <label>
           <?php echo elgg_view('input/checkboxes', array(
-          'internalname' => 'izap_points[object]['.$object_subtype.'][activated]',
+          'name' => 'izap_points[object]['.$object_subtype.'][activated]',
           'value' => $loaded_data->$activated_value,
           'options' => array(
                   elgg_echo('item:object:' . $object_subtype) => 'yes',
@@ -43,7 +43,7 @@ if($point_settings) {
       </label>
         <?php
         echo elgg_view('input/text', array(
-        'internalname' => 'izap_points[object]['.$object_subtype.'][points]',
+        'name' => 'izap_points[object]['.$object_subtype.'][points]',
         'value' => $loaded_data->$points_value,
         'class' => 'general-text'
         )
@@ -60,7 +60,7 @@ if($point_settings) {
         $activated_value = 'group_default_activated';
         $points_value = 'group_default_points';
         echo elgg_view('input/checkboxes', array(
-        'internalname' => 'izap_points[group][default][activated]',
+        'name' => 'izap_points[group][default][activated]',
         'value' => $loaded_data->$activated_value,
         'options' => array(
                 elgg_echo('item:group') => 'yes',
@@ -71,7 +71,7 @@ if($point_settings) {
       </label>
       <?php
       echo elgg_view('input/text', array(
-      'internalname' => 'izap_points[group][default][points]',
+      'name' => 'izap_points[group][default][points]',
       'value' => $loaded_data->$points_value,
       'class' => 'general-text'
       )
@@ -84,7 +84,7 @@ if($point_settings) {
         $activated_value = 'annotation_default_activated';
         $points_value = 'annotation_default_points';
         echo elgg_view('input/checkboxes', array(
-        'internalname' => 'izap_points[annotation][default][activated]',
+        'name' => 'izap_points[annotation][default][activated]',
         'value' => $loaded_data->$activated_value,
         'options' => array(
                 elgg_echo('item:annotation') => 'yes',
@@ -94,7 +94,7 @@ if($point_settings) {
       </label>
       <?php
       echo elgg_view('input/text', array(
-      'internalname' => 'izap_points[annotation][default][points]',
+      'name' => 'izap_points[annotation][default][points]',
       'value' => $loaded_data->$points_value,
       'class' => 'general-text'
       )
@@ -107,7 +107,7 @@ if($point_settings) {
       </label><br />
       <?php
         echo elgg_view('input/text', array(
-          'internalname' => 'izap_points[login]',
+          'name' => 'izap_points[login]',
           'value' => $loaded_data->login,
         ));
       ?>
@@ -120,7 +120,7 @@ if($point_settings) {
       <textarea name="izap_points[rank_rules]" cols="50" rows="7"><?php echo $loaded_data->rank_rules?></textarea>
     </p>
     <?php
-    echo elgg_view('input/hidden', array('internalname' => 'izap_points[guid]', 'value' => (int) $loaded_data->guid));
+    echo elgg_view('input/hidden', array('name' => 'izap_points[guid]', 'value' => (int) $loaded_data->guid));
     echo elgg_view('input/submit', array('value' =>  elggb_echo('save')));
     ;?>
   </form>
