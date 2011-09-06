@@ -83,8 +83,8 @@ if ($total_value > $total_available_points) {
           if ($offer->partial_redemption_allowed == 'yes') {
             // can use both points and Money
             $points_text = elgg_view('input/text', array(
-                        'internalname' => 'attributes[points]',
-                        'internalid' => 'points_used',
+                        ' name' => 'attributes[points]',
+                        ' id' => 'points_used',
                         'value' => $points_can_be_used,
                         'js' => 'style="width:50px;"'
                     ));
@@ -107,7 +107,7 @@ if ($total_value > $total_available_points) {
 
       <?php
       $form .= elgg_view('input/hidden',array(
-          'internalname' => 'attributes[points]',
+          ' name' => 'attributes[points]',
                         'value' => 0,
       ));
           }
@@ -117,21 +117,21 @@ if ($total_value > $total_available_points) {
           // can use money only
           $more_requied = $total_value;
           $form .= elgg_view('input/hidden',array(
-          'internalname' => 'attributes[points]',
+          ' name' => 'attributes[points]',
                         'value' => 0,
       ));
         }
         
         $form .= elgg_view('input/hidden', array(
-                    'internalname' => 'attributes[to_be_paid]',
+                    ' name' => 'attributes[to_be_paid]',
                     'value' => $more_requied * $unit,
-                    'internalid' => 'points_user_hidden'));
+                    ' id' => 'points_user_hidden'));
         $form .= elgg_view('input/hidden', array(
-                    'internalname' => 'attributes[guid]',
+                    ' name' => 'attributes[guid]',
                     'value' => $offer->guid,
                 ));
         $form .= elgg_view('input/hidden', array(
-                    'internalname' => 'attributes[price]',
+                    ' name' => 'attributes[price]',
                     'value' => $offer->point_value
                 ));
         $form .= elgg_view('input/submit', array(

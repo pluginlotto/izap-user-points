@@ -18,20 +18,20 @@ $form_values=IzapBase::getFormValues(array('entity'=>$coupon,'plugin'=>GLOBAL_IZ
 $form = '';
 $form .= IzapBase::input('text', array(
   'input_title' => elgg_echo('izap-user-points:title'),
-  'internalname' => 'attributes[_title]',
+  'name' => 'attributes[_title]',
   'value'=>$form_values->title
 ));
 
 $form .= IzapBase::input('longtext', array(
   'input_title' => elgg_echo('izap-user-points:description'),
-  'internalname' => 'attributes[_description]',
+  'name' => 'attributes[_description]',
   'value'=>$form_values->description
 ));
 
 
 $form .= '<p><label>';
 $form .= elgg_echo('izap-user-points:valid_till') . '<br />';
-$form.=elgg_view('input/date',array('internalname' => 'attributes[_valid_till]',
+$form.=elgg_view('input/date',array('name' => 'attributes[_valid_till]',
         'value'=>$form_values->valid_till
         ));
 
@@ -39,7 +39,7 @@ $form .= '</label></p>';
 
 $form.=IzapBase::input('text',array(
   'input_title'=>elgg_echo('izap-user-points:point_value'),
-  'internalname'=>'attributes[point_value]',
+  'name'=>'attributes[point_value]',
   'value'=>$form_values->point_value
 ));
 
@@ -47,7 +47,7 @@ $form.= '<p>'.elgg_echo('izap-user-points:point_value_msg').'</p>';
 
 $form .= IzapBase::input('text',array(
     'input_title' => elgg_echo('izap-user-points:per_unit_value')." ".$CONFIG->site_currency_name ,
-    'internalname' => 'attributes[per_unit_value]',
+    'name' => 'attributes[per_unit_value]',
     'value' => $form_values->per_unit_value
 ));
 $form.= '<p>'.elgg_echo('izap-user-points:per_unit_value_msg').'</p>';
@@ -56,9 +56,9 @@ $form .='<p> <label>'.elgg_echo('izap-user-points:allow_to_point_bank').'<br/>';
 
 $form .= elgg_view('input/dropdown' ,array(
     //'input_title' => elgg_echo('izap-user-points:allow_to_point_bank'),
-    'internalname' => 'attributes[point_bank_allowed]',
+    'name' => 'attributes[point_bank_allowed]',
     'value' => $form_values->point_bank_allowed,
-    'internalid' => "point_bank",
+    'id' => "point_bank",
     'options_values' =>array(
         'yes' => elgg_echo('izap-elgg-bridge:yes'),
         'no' => elgg_echo('izap-elgg-bridge:no')
@@ -70,9 +70,9 @@ $form.= '<p>'.elgg_echo('izap-user-points:allow_to_point_bank_msg').'</p>';
 $form .= '<p> <label>'.elgg_echo('izap-user-points:partial_redemption_allowed').'<br/>';
 $form .= elgg_view('input/dropdown',array(
     //'input_title' => elgg_echo('izap-user-points:partial_redemption_allowed'),
-    'internalname' => 'attributes[partial_redemption_allowed]',
+    'name' => 'attributes[partial_redemption_allowed]',
     'value' => $form_values->partial_redemption_allowed,
-     'internalid' => 'partial_redemption',
+     'id' => 'partial_redemption',
     'options_values' => array(
         'yes' => elgg_echo('izap-elgg-bridge:yes'),
         'no' => elgg_echo('izap-elgg-bridge:no')
@@ -83,7 +83,7 @@ $form .='</lebel></p>';
 
 $form .= IzapBase::input('access',array(
   'input_title'=>elgg_echo('izap-user-points:access_id'),
-  'internalname'=>'attributes[access_id]',
+  'name'=>'attributes[access_id]',
   'value'=>($form_values->access_id?$form_values->access_id:ACCESS_DEFAULT)
   ));
 
@@ -92,12 +92,12 @@ $form .= IzapBase::input('submit',array(
   ));
 
 $form .= elgg_view('input/hidden', array(
-        'internalname' => 'attributes[plugin]',
+        'name' => 'attributes[plugin]',
         'value' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
 ));
 
 $form .= elgg_view('input/hidden', array(
-        'internalname' => 'attributes[guid]',
+        'name' => 'attributes[guid]',
         'value' => $form_values->guid,
 ));
 

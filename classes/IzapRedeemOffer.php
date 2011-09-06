@@ -18,7 +18,7 @@ class IzapRedeemOffer extends IzapObject {
   private $sqlite_file;
 
   protected function initialise_attributes() {
-    parent::initialise_attributes();
+    parent::initializeAttributes();
   }
 
   public function __construct($guid = null) {
