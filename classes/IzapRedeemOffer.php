@@ -29,10 +29,8 @@ class IzapRedeemOffer extends IzapObject {
     @mkdir($CONFIG->dataroot . '/' . GLOBAL_IZAP_USER_POINTS_PLUGIN . '/');
   }
 
-  public function  getIconURL($size = 'small') {
-    return $this->getownerentity()->geticonurl('small');
-  }
   
+
   public function getAttributesArray() {
     return array(
         'title' => array(),
@@ -44,6 +42,7 @@ class IzapRedeemOffer extends IzapObject {
         'per_unit_value' => array(),
         'point_bank_allowed' => array(),
         'partial_redemption_allowed' => array(),
+        'comments_on' =>array()
     );
   }
 
@@ -83,19 +82,20 @@ class IzapRedeemOffer extends IzapObject {
 
     $action_vars = array(
         'guid' => $this->guid,
-        'to_be_paid'=>0,
+        'to_be_paid' => 0,
         'price' => $price,
-        'points' =>$price
+        'points' => $price
     );
 
     foreach ($action_vars as $var => $val) {
-      $action_string .='attributes['. $var . ']=' . $val . '&';
+      $action_string .='attributes[' . $var . ']=' . $val . '&';
     }
     $action_string = substr($action_string, 0, -1);
 
     $action = $action . '?' . $action_string;
 //echo elgg_add_action_tokens_to_url($action);exit;
-    return elgg_add_action_tokens_to_url($action);
+//    return elgg_add_action_tokens_to_url($action);
+    return $action;
   }
 
   public function canBeDeleted() {
@@ -133,7 +133,7 @@ class IzapRedeemOffer extends IzapObject {
       VALUES (
       "' . $array['guid'] . '",
         "' . $array['code'] . '",
-          "'.$array['offer_title'].'",
+          "' . $array['offer_title'] . '",
           "' . $array['user_guid'] . '",
             "' . $array['username'] . '",
             "no",
@@ -164,4 +164,18 @@ class IzapRedeemOffer extends IzapObject {
     return $success;
   }
 
+  public function getThumb($size= 'small') {
+    $image = '<img src = "' . $this->getIconURL($size) . '"/>';
+    return $image;
+  }
+
+  
+public function getIconURL($size = 'small') {
+    return IzapBase::setHref(array(
+        'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
+        'action' => 'icon',
+        'page_owner' => FALSE,
+        'vars' => array($this->guid, $size,)
+    )) . $this->time_updated . ".jpg";
+  }
 }

@@ -32,10 +32,16 @@ IzapBase::updatePostedAttribute('per_unit_value', '0');
 }
 $redeem_offer = new IzapRedeemOffer($posted_array['guid']);
 $time = split("[\/-]",$posted_array['valid_till']);
-$time_str = mktime(23,59,59,$time[1],$time[2],$time[0]);
+$time_str = mktime(23,59,59,$time[0],$time[1],$time[2]);
 IzapBase::updatePostedAttribute('valid_till', $time_str);
 $redeem_offer->setAttributes();
 if($redeem_offer->save()) {
+  IzapBase::saveImageFile(array('destination' =>'offer/'.$redeem_offer->guid.'/icon',
+      'content' => file_get_contents($_FILES['image']['tmp_name']),
+      'owner_guid' => $redeem_offer->owner_guid,
+      'create_thumbs' => TRUE
+      
+  ));
   elgg_clear_sticky_form(GLOBAL_IZAP_USER_POINTS_PLUGIN);
   system_message(elgg_echo('izap-user-points:success_creating_redeem_offer'));
 

@@ -120,12 +120,9 @@ function izap_update_coupon_status_user_points($coupon_code, $status = 'yes') {
 function func_user_points_in_main_profile($hook, $type, $return, $params) {
   
   $user = $params['entity'];
-//  c($user);
-//  echo $user->izap_points;exit;
+
   if (elgg_instanceof($user, 'user')) {;
      $point_str .= sprintf(elgg_echo('izap-user:total_points'), $user->izap_points,IzapUserPoints::getUserRank($user->izap_points));
-//    $point_str .= elgg_echo('izap-user:total_points');
-//    $point_str .= ' ('.IzapUserPoints::getUserRank($points).')';
     $item = new ElggMenuItem(GLOBAL_IZAP_USER_POINTS_PLUGIN, $point_str, '#');
     $return[] = $item;
   }

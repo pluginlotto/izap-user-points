@@ -15,7 +15,7 @@
 <div class="point-required">
       <?php
       $user= elgg_get_logged_in_user_entity();
-      echo elgg_echo('izap-user-points:user-points');
+      echo elgg_echo('izap-user-points:my-points');
       echo IzapUserPoints::getUserPoints($user);
       if(elgg_instanceof($vars['entity'], 'object',GLOBAL_IZAP_USER_POINTS_SUBTYPE)){
               echo'<br/>';

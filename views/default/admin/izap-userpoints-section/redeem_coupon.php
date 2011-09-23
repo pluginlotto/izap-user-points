@@ -28,6 +28,10 @@ $form .= IzapBase::input('longtext', array(
   'value'=>$form_values->description
 ));
 
+$form .= IzapBase::input('file',array(
+    'input_title' => elgg_echo('izap-user-point:image'),
+    'name' => 'image',
+   ));
 
 $form .= '<p><label>';
 $form .= elgg_echo('izap-user-points:valid_till') . '<br />';
@@ -81,6 +85,12 @@ $form .= elgg_view('input/dropdown',array(
 
 $form .='</lebel></p>';
 
+$form .= IzapBase::input('dropdown', array(
+    'input_title' => elgg_echo('izap-elgg-bridge:comments'),
+    'name' => 'attributes[comments_on]',
+    'value' => $form_values->comments_on,
+    'options_values' => array('1' => elgg_echo('izap_userpoints:on'), '0' => elgg_echo('izap_userpoints:off'))
+));
 $form .= IzapBase::input('access',array(
   'input_title'=>elgg_echo('izap-user-points:access_id'),
   'name'=>'attributes[access_id]',
@@ -105,10 +115,11 @@ $form .= elgg_view('input/hidden', array(
 ?>
 <div class="contentWrapper">
   <?php
-    echo elgg_view('input/form', array('body' => $form, 'action' => IzapBase::getFormAction('save_redeem_coupon', GLOBAL_IZAP_USER_POINTS_PLUGIN)));
+    echo elgg_view('input/form', array('body' => $form, 'action' => IzapBase::getFormAction('save_redeem_coupon', GLOBAL_IZAP_USER_POINTS_PLUGIN),'enctype'=>"multipart/form-data"));
   ?>
 </div>
 <script type="text/javascript">
+  $( ".elgg-input-date" ).datepicker({minDate: 0});
   $("#point_bank").change(function(){
     if($('select#point_bank option:selected').val()=='no'){
       $('select#partial_redemption').attr('disabled', true)
