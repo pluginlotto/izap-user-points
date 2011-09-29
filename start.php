@@ -30,7 +30,7 @@ function func_izap_start_giving_points() {
   elgg_register_event_handler('login', 'user', 'func_izap_user_point_increment_on_login');
 
 
-  $CONFIG->valid_types_for_points = array('object', 'group', 'annotation');
+  $CONFIG->valid_types_for_points = array('object', 'group', 'annotations','annotation');
 
   elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'func_user_points_in_main_profile');
 //  elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'func_user_points_in_main_profile');
@@ -90,7 +90,7 @@ function func_izap_user_point_increment($event, $object_type, $object) {
 
 function func_izap_user_point_decrement($event, $object_type, $object) {
   global $CONFIG;
-  if ($object && in_array($object_type, $CONFIG->valid_types_for_points)) {
+   if ($object && in_array($object_type, $CONFIG->valid_types_for_points)) {
     $izap_user_point = new IzapUserPoints();
     $izap_user_point->decreasePoint($object);
   }
