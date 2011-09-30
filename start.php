@@ -20,6 +20,9 @@ define('GLOBAL_IZAP_USER_POINTS_PAGEHANDLER', 'userpoints');
 define('GLOBAL_IZAP_USER_POINTS_SUBTYPE', 'IzapRedeemOffer');
 define('GLOBAL_IZAP_USER_POINTS_SQLITE_DB', 'coupons02');
 
+if (elgg_is_active_plugin(GLOBAL_IZAP_ELGG_BRIDGE))
+elgg_register_event_handler('init', 'system', 'func_izap_start_giving_points');
+
 function func_izap_start_giving_points() {
   global $CONFIG;
 
@@ -77,8 +80,6 @@ function izap_active_site_offers_user_points() {
 
   return FALSE;
 }
-
-elgg_register_event_handler('init', 'system', 'func_izap_start_giving_points');
 
 function func_izap_user_point_increment($event, $object_type, $object) {
   global $CONFIG;
