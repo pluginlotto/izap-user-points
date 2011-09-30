@@ -33,18 +33,6 @@
 </p>
 
 
-<!--<p>
-  <label>-->
-    <?php //echo elgg_echo('izap-user-points:per_unit_value')?>
-<!--  </label>-->
-  <?php //echo elgg_view('input/text',array(
-//    'internalname' => 'params[per_unit_value]',
-//    'value' => IzapBase::pluginSetting(array('plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
-//        'name' => 'per_unit_value',
-//        'value' =>1))
-//));
-  ?>
-<!--</p>-->
 <h1>
   <a href="/admin/izap-userpoints-section/<?=GLOBAL_IZAP_USER_POINTS_PLUGIN;?>"><?php echo elgg_echo('izap-user-points:go_to_admin_settings');?></a>
 </h1>

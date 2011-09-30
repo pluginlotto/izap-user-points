@@ -48,6 +48,7 @@ add_translation('en', array(
     'izap-user-point:image' => 'Image',
     'izap_userpoints:on' => 'On',
     'izap_userpoints:off' => 'Off',
+    'izap-user-points:cash_required' => 'Cash required: ',
     'izap-user-points:points_required' => 'Points required',
     'izap-user-points:get_code' => 'Avail/Buy Offer',
     'izap-user-points:error_buying_offer' => 'Error Processing your Offer',

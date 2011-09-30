@@ -32,7 +32,6 @@ function func_izap_start_giving_points() {
   elgg_register_event_handler('delete', 'all', 'func_izap_user_point_decrement');
   elgg_register_event_handler('login', 'user', 'func_izap_user_point_increment_on_login');
 
-
   $CONFIG->valid_types_for_points = array('object', 'group', 'annotations','annotation');
 
   elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'func_user_points_in_main_profile');

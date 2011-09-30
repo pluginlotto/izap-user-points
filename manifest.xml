@@ -26,6 +26,7 @@
       <plugin>izap-elgg-bridge</plugin>
       <priority>after</priority>
     </requires>
+    
     <on_activate>
       func_update_subtype
     </on_activate>

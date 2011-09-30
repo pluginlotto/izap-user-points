@@ -63,10 +63,10 @@ class IzapUserpointsController extends IzapController {
 
     $title = elgg_echo('izap-user-points:view_offer', array($offer->title));
     $this->page_elements['title'] = $title;
-    if ($offer->point_bank_allowed != 'no') {
+    
       $this->widgets = array();
       $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/user-stats', array('entity' => $offer));
-    }
+    
     $content = elgg_view_entity($offer, array('full_view' => TRUE));
     $this->page_elements['content'] = $content;
     $this->drawPage();
