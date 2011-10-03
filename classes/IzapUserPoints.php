@@ -68,7 +68,8 @@ class IzapUserPoints {
       } else {
         $user = get_loggedin_user();
       }
-      $user->izap_points = (int) ($user->izap_points) - (int) ($object->points_added);
+      $new_points = (int) ($user->izap_points) - (int) ($object->points_added);
+      $user->izap_points = (($new_points < 0) ? 0 : $new_points);
     } else {
 
       $this->getPointArray();

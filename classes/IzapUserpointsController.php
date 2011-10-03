@@ -20,7 +20,6 @@ class IzapUserpointsController extends IzapController {
     if (elgg_is_logged_in ())
       $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/user-stats');
     $this->page_elements['filter'] = '';
-    //  $this->page_elements['buttons']='';
     if (elgg_is_admin_logged_in ()) {
       $this->addButton(array(
           'menu_name' => 'title',
