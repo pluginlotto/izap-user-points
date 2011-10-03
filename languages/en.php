@@ -102,6 +102,8 @@ add_translation('en', array(
     //river
 
     'item:object:IzapRedeemOffer:singular' => 'Offer',
+    'river:created:object:IzapRedeemOffer' => '%s has created a new offer %s',
+    'river:updated:object:IzapRedeemOffer' => '%s has updated offer %s',
     //admin stats
     'izap-user-points' => 'Izap user points',
         )
