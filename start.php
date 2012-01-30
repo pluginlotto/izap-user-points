@@ -63,6 +63,7 @@ function func_izap_start_giving_points() {
                       'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
                       'page_owner' =>false
                   )));
+  $top_user->rel = 'nofollow';
   elgg_register_menu_item('site', $top_user);
 }
 
