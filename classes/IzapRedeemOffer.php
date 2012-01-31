@@ -56,7 +56,7 @@ class IzapRedeemOffer extends IzapObject {
   }
 
   public function canUserBuy($user_guid = 0) {
-    if (!isloggedin()) {
+    if (!elgg_is_logged_in()) {
       return FALSE;
     }
 
