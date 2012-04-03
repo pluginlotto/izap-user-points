@@ -17,6 +17,7 @@
 add_translation('en', array(
     'item:annotation' => 'Annotation (Comments, rating and all others)',
     'izap-user-points:go_to_admin_settings' => 'Edit user points',
+    'izap-user-points:no_admin_permission' => 'You need to have Admin Permission to view this page',
     'izap-user-points:activate_site_offers' => 'Activate site offers',
     'izap-user-points:user_rank_rules' => 'Add rules for user ranks, add one rule per line
           {"name"|"for points less than"} i.e. <pre>New|100<br />Intermedate|1000</pre>',
@@ -36,20 +37,22 @@ add_translation('en', array(
     'izap-user-points:access_id' => 'Access id',
     'izap-user-points:success_creating_redeem_offer' => 'Offer Created successfully',
     'izap-user-points:error_creating_redeem_offer' => 'Error Creating offer',
-    'izap-user-points:form_error:empty:per_unit_value'=>'Please choose per unit value',
-    'izap-user-points:point_value_msg'=>'Set this field empty to publish this coupon free of cost',
-    'izap-user-points:per_unit_value_msg'=>'This per unit value will calculate the monetary cost of the offer',
-    'izap-user-points:allow_to_point_bank_msg'=>'yes is preferable',
+    'izap-user-points:form_error:empty:per_unit_value' => 'Please choose per unit value',
+    'izap-user-points:point_value_msg' => 'Set this field empty to publish this coupon free of cost',
+    'izap-user-points:per_unit_value_msg' => 'This per unit value will calculate the monetary cost of the offer',
+    'izap-user-points:allow_to_point_bank_msg' => 'yes is preferable',
     // site offers
     'izap-user-points:redeem_offers' => 'Site offers',
     'izap-user-points:form_error:empty:title' => 'Title can not be left blank',
     'izap-user-points:form_error:empty:description' => 'Description can not be left blank',
     'izap-user-points:site_offers' => 'Site Offers',
+    'izap-user-points:archive' => 'Archives',
     'izap-user-point:image' => 'Image',
     'izap_userpoints:on' => 'On',
     'izap_userpoints:off' => 'Off',
     'izap-user-points:cash_required' => 'Cash required: ',
     'izap-user-points:points_required' => 'Points required',
+    'izap-user-points:offer_valid_till' => 'Offer Valid till',
     'izap-user-points:get_code' => 'Avail/Buy Offer',
     'izap-user-points:error_buying_offer' => 'Error Processing your Offer',
     'izap-user-points:offer_bought' => 'Offer Purchased Successfully',
@@ -95,10 +98,9 @@ add_translation('en', array(
     'item:object:IzapRedeemOffer' => 'Coupon offers',
     'izap-user-point:top_users' => 'Top Users',
     'izap-user-points:my-points' => 'My points: ',
-    'izap-user-points:per_unit_value'=>'Per Unit Value in',
-    'izap-user-points:allow_to_point_bank'=>'Allow point Bank',
-    'izap-user-points:partial_redemption_allowed'=>'Allow partial redemption ',
-
+    'izap-user-points:per_unit_value' => 'Per Unit Value in',
+    'izap-user-points:allow_to_point_bank' => 'Allow point Bank',
+    'izap-user-points:partial_redemption_allowed' => 'Allow partial redemption ',
     //river
 
     'item:object:IzapRedeemOffer:singular' => 'Offer',

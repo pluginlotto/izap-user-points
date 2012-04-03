@@ -15,12 +15,16 @@
 
 class IzapUserpointsController extends IzapController {
 
+  /**
+   * constructor of the user controller class
+   * @param type $page 
+   */
   public function __construct($page) {
     parent::__construct($page);
-    if (elgg_is_logged_in ())
+    if (elgg_is_logged_in())
       $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/user-stats');
     $this->page_elements['filter'] = '';
-    if (elgg_is_admin_logged_in ()) {
+    if (elgg_is_admin_logged_in()) {
       $this->addButton(array(
           'menu_name' => 'title',
           'title' => elgg_echo('izap-user-points:add_new'),
@@ -29,6 +33,9 @@ class IzapUserpointsController extends IzapController {
     }
   }
 
+  /**
+   * function calling the default action of the handler
+   */
   public function actionIndex() {
     $title = elgg_echo('izap-user-point:top_users');
     $this->page_elements['title'] = $title;
@@ -54,6 +61,9 @@ class IzapUserpointsController extends IzapController {
     $this->drawPage();
   }
 
+  /**
+   * function that displays the offer details
+   */
   public function actionView_offer() {
     $offer = get_entity($this->url_vars[2]);
     if (!elgg_instanceof($offer, 'object', GLOBAL_IZAP_USER_POINTS_SUBTYPE)) {
@@ -62,22 +72,24 @@ class IzapUserpointsController extends IzapController {
 
     $title = elgg_echo('izap-user-points:view_offer', array($offer->title));
     $this->page_elements['title'] = $title;
-    
-      $this->widgets = array();
-      $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/user-stats', array('entity' => $offer));
-    
-    $content = elgg_view_entity($offer, array('full_view' => TRUE));
+
+    $this->widgets = array();
+    $this->addWidget(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/user-stats', array('entity' => $offer));
+
+    $content = elgg_view_entity($offer, array('full_view' => True));
     $this->page_elements['content'] = $content;
     $this->drawPage();
   }
-
+  
+  /**
+   * displays the list of all valid site offers 
+   */
   public function actionOffers() {
-
 
     $options = array(
         'type' => 'object',
         'subtype' => GLOBAL_IZAP_USER_POINTS_SUBTYPE,
-        'full_view' => FALSE,
+        'full_view' => False,
         'metadata_name_value_pairs' => array(
             'name' => 'valid_till',
             'value' => time(),
@@ -96,6 +108,35 @@ class IzapUserpointsController extends IzapController {
     $this->drawPage();
   }
 
+  /**
+   *  displays list of all site offers including the invalid/outdated also
+   */
+  public function actionArchive() {
+    if (!elgg_is_admin_logged_in()) {
+      register_error(elgg_echo('izap-user-points:no_admin_permission'));
+      forward();
+    } else {
+      $options = array(
+          'type' => 'object',
+          'subtype' => GLOBAL_IZAP_USER_POINTS_SUBTYPE,
+          'full_view' => False,
+          'order_by_metadata' => array(
+              array(
+                  'name' => 'valid_till',
+              ),
+          ),
+      );
+      $title = elgg_echo('izap-user-points:archive');
+      $this->page_elements['title'] = $title;
+      $this->page_elements['content'] = elgg_list_entities_from_metadata($options);
+
+      $this->drawPage();
+    }
+  }
+
+  /**
+   * displays user points settings in admin panel
+   */
   public function actionSettings() {
     $this->render(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/forms/admin_settings');
   }
@@ -120,6 +161,10 @@ class IzapUserpointsController extends IzapController {
     $header_array['file_name'] = elgg_get_friendly_title($challenge->title);
     IzapBase::cacheHeaders($header_array);
     echo $content;
+  }
+
+  public function actionCoupons() {
+    $this->render(GLOBAL_IZAP_USER_POINTS_PLUGIN . '/forms/coupons');
   }
 
 }

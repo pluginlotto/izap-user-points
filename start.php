@@ -14,14 +14,16 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+//declaring varables globally
 define('GLOBAL_IZAP_USER_POINTS_PLUGIN', 'izap-user-points');
 define('GLOBAL_IZAP_USER_POINTS_ACTIONHANDLER', 'izap_user_points');
 define('GLOBAL_IZAP_USER_POINTS_PAGEHANDLER', 'userpoints');
 define('GLOBAL_IZAP_USER_POINTS_SUBTYPE', 'IzapRedeemOffer');
 define('GLOBAL_IZAP_USER_POINTS_SQLITE_DB', 'coupons02');
 
+// integration with the izap_elgg_bridge is done here 
 if (elgg_is_active_plugin(GLOBAL_IZAP_ELGG_BRIDGE))
-elgg_register_event_handler('init', 'system', 'func_izap_start_giving_points');
+  elgg_register_event_handler('init', 'system', 'func_izap_start_giving_points');
 
 function func_izap_start_giving_points() {
   global $CONFIG;
@@ -32,11 +34,9 @@ function func_izap_start_giving_points() {
   elgg_register_event_handler('delete', 'all', 'func_izap_user_point_decrement');
   elgg_register_event_handler('login', 'user', 'func_izap_user_point_increment_on_login');
 
-  $CONFIG->valid_types_for_points = array('object', 'group', 'annotations','annotation');
+  $CONFIG->valid_types_for_points = array('object', 'group', 'annotations', 'annotation');
 
   elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'func_user_points_in_main_profile');
-//  elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'func_user_points_in_main_profile');
-
   elgg_extend_view('user/status', GLOBAL_IZAP_USER_POINTS_PLUGIN . '/points_in_listing');
 
   elgg_register_page_handler(GLOBAL_IZAP_USER_POINTS_PAGEHANDLER, GLOBAL_IZAP_PAGEHANDLER);
@@ -45,23 +45,23 @@ function func_izap_start_giving_points() {
   elgg_register_admin_menu_item('userpoints', 'redeem_coupon', 'izap-userpoints-section');
   elgg_register_admin_menu_item('userpoints', 'check_coupon', 'izap-userpoints-section');
 
-
-  if(IzapBase::pluginSetting(array(
+  // this functions checks if the site-offers are activated
+  if (IzapBase::pluginSetting(array(
               'plugin' => GLOBAL_IZAP_USER_POINTS_PLUGIN,
-              'name' => 'izap_activate_site_offers'))=='yes'){
-  $menu_item = new ElggMenuItem('izap-user-points', elgg_echo('izap-user-points:site_offers'),
-                  IzapBase::setHref(array(
-                      'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
-                      'action' => 'offers',
-                      'page_owner' => false
-                  )));
-  elgg_register_menu_item('site', $menu_item);
-              }
+              'name' => 'izap_activate_site_offers')) == 'yes') {
+    $menu_item = new ElggMenuItem('izap-user-points', elgg_echo('izap-user-points:site_offers'),
+                    IzapBase::setHref(array(
+                        'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
+                        'action' => 'offers',
+                        'page_owner' => false
+                    )));
+    elgg_register_menu_item('site', $menu_item);
+  }
 
   $top_user = new ElggMenuItem('izap-top-users', elgg_echo('izap-user-point:top_users'),
                   IzapBase::setHref(array(
                       'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
-                      'page_owner' =>false
+                      'page_owner' => false
                   )));
   $top_user->rel = 'nofollow';
   elgg_register_menu_item('site', $top_user);
@@ -75,10 +75,10 @@ function izap_active_site_offers_user_points() {
           ));
 
   if ($activate_site_offers == 'yes') {
-    return TRUE;
+    return True;
   }
 
-  return FALSE;
+  return False;
 }
 
 function func_izap_user_point_increment($event, $object_type, $object) {
@@ -91,7 +91,7 @@ function func_izap_user_point_increment($event, $object_type, $object) {
 
 function func_izap_user_point_decrement($event, $object_type, $object) {
   global $CONFIG;
-   if ($object && in_array($object_type, $CONFIG->valid_types_for_points)) {
+  if ($object && in_array($object_type, $CONFIG->valid_types_for_points)) {
     $izap_user_point = new IzapUserPoints();
     $izap_user_point->decreasePoint($object);
   }
@@ -119,11 +119,12 @@ function izap_update_coupon_status_user_points($coupon_code, $status = 'yes') {
 }
 
 function func_user_points_in_main_profile($hook, $type, $return, $params) {
-  
+
   $user = $params['entity'];
 
-  if (elgg_instanceof($user, 'user')) {;
-     $point_str .= sprintf(elgg_echo('izap-user:total_points'), $user->izap_points,IzapUserPoints::getUserRank($user->izap_points));
+  if (elgg_instanceof($user, 'user')) {
+    ;
+    $point_str .= sprintf(elgg_echo('izap-user:total_points'), $user->izap_points, IzapUserPoints::getUserRank($user->izap_points));
     $item = new ElggMenuItem(GLOBAL_IZAP_USER_POINTS_PLUGIN, $point_str, '#');
     $return[] = $item;
   }

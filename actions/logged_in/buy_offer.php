@@ -1,5 +1,4 @@
-<?php
-
+f<?php
 /* * ***********************************************
  * PluginLotto.com                                 *
  * Copyrights (c) 2005-2010. iZAP                  *
@@ -14,10 +13,13 @@
  */
 
 
-
+// this page saves the buyed offer by the user 
+// fetches the entity of the offer against the ID
 $offer_attribs = IzapBase::getPostedAttributes();
-$success = FALSE;
+$success = False;
 $offer = get_entity($offer_attribs['guid']);
+
+// checks if the user is logged in to buy an offer
 if (elgg_instanceof($offer, 'object', GLOBAL_IZAP_USER_POINTS_SUBTYPE)) {
   $user = elgg_get_logged_in_user_entity();
   if ($user->izap_points < $offer_attribs['points']) {
@@ -45,14 +47,10 @@ if (elgg_instanceof($offer, 'object', GLOBAL_IZAP_USER_POINTS_SUBTYPE)) {
                 'to_be_paid' => $offer_attribs['to_be_paid'],
                 'coupon_price' => $offer_attribs['price']
             ));
-
     if ($success) {
       $user->izap_points = (int) $user->izap_points - (int) $offer_attribs['points'];
       notify_user(
-              $user->guid,
-              $CONFIG->site->guid,
-              elgg_echo('izap-user-points:offer_bought_subject'),
-              sprintf(elgg_echo('izap-user-points:offer_bought_message'), $generated_code)
+              $user->guid, $CONFIG->site->guid, elgg_echo('izap-user-points:offer_bought_subject'), sprintf(elgg_echo('izap-user-points:offer_bought_message'), $generated_code)
       );
     }
   }

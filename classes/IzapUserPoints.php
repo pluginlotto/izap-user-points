@@ -14,18 +14,21 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ * this page performs all the functions for user point settings
+ */
 class IzapUserPoints {
 
   private $point_array;
 
   public function __construct() {
-
+    
   }
 
   public function getPointArray() {
     $point_settings = get_entity(elgg_get_plugin_setting('setting_entity_guid', 'izap-user-points'));
     if (!$point_settings) {
-      return FALSE;
+      return False;
     }
 
     $metadata = elgg_get_metadata(array('guid' => $point_settings->guid, 'limit' => 0));
@@ -34,6 +37,10 @@ class IzapUserPoints {
     }
   }
 
+  /**
+   * increment the user points is done here
+   * @param type $object
+   */
   public function increasePoint($object) {
     $this->getPointArray();
     $point = (int) $this->point_array[$this->makePointString($object->getType(), $object->getSubtype())];
@@ -49,6 +56,11 @@ class IzapUserPoints {
     }
   }
 
+  /**
+   * increment based on per event is being done here
+   * @param type $event
+   * @param type $user 
+   */
   public function eventBasedIncreasePoint($event, $user = FALSE) {
     $this->getPointArray();
     $point = (int) $this->point_array[$event];
@@ -61,9 +73,13 @@ class IzapUserPoints {
     }
   }
 
+  /**
+   * decrement in the user point is done here
+   * @param ElggAnnotation $object 
+   */
   public function decreasePoint($object) {
     if ((int) ($object->points_added)) {
-            if (method_exists($object, 'getOwnerEntity')) {
+      if (method_exists($object, 'getOwnerEntity')) {
         $user = $object->getOwnerEntity();
       } else {
         $user = get_loggedin_user();
@@ -108,6 +124,11 @@ class IzapUserPoints {
     }
   }
 
+  /**
+   * calculates gets user points
+   * @param ElggUser $user
+   * @return type int
+   */
   public static function getUserPoints(ElggUser $user = null) {
     if (!elgg_instanceof($user, 'user')) {
       $user = elgg_get_logged_in_user_entity();
@@ -121,6 +142,10 @@ class IzapUserPoints {
     return (($points < 0) ? 0 : $points);
   }
 
+  /**
+   * gets all ranks of all the users
+   * @return type int
+   */
   public static function getRanks() {
     $point_settings = get_entity(elgg_get_plugin_setting('setting_entity_guid', 'izap-user-points'));
     $admin_rules = $point_settings->rank_rules;
@@ -135,6 +160,11 @@ class IzapUserPoints {
     return $rules_array;
   }
 
+  /**
+   * gets the rank of the user based on his points
+   * @param type $total_points
+   * @return type boolean
+   */
   public static function getUserRank($total_points = 0) {
     $ranks = self::getRanks();
     ksort($ranks);

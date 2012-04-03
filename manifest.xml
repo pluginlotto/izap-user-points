@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
-    <name>IZAP user points</name>
-    <author>iZAP Team</author>
-    <version>0.1</version>
-    <blurb>Point system for the user</blurb>
-    <description>Point system for the user. Admin can define points for every entity created
-  by user. Requires 'izap-elgg-bridge' plugin </description>
-    <website>http://www.pluginlotto.com/store</website>
-    <copyright>(C) iZAP Web Solutions</copyright>
-    <licence>GNU Public Licence Version 2</licence>
-    <requires>
-          <type>elgg_version</type>
-          <version>2010030101</version>
-    </requires>
+  <name>IZAP user points</name>
+  <author>iZAP Team</author>
+  <version>0.1</version>
+  <blurb>Point system for the user</blurb>
+  <description>Point system for the user. Admin can define points for every entity created
+  by user. Requires 'izap-elgg-bridge' plugin 
+  </description>
+  <website>http://www.pluginlotto.com/store</website>
+  <copyright>(C) iZAP Web Solutions</copyright>
+  <licence>GNU Public Licence Version 2</licence>
+  <requires>
+    <type>elgg_version</type>
+    <version>2010030101</version>
+  </requires>
 
-    <requires>
-      <type>plugin</type>
-      <name>izap-elgg-bridge</name>
-      <version>2.0</version>
-    </requires>
+  <requires>
+    <type>plugin</type>
+    <name>izap-elgg-bridge</name>
+    <version>2.0</version>
+  </requires>
 
-    <requires>
-      <type>priority</type>
-      <plugin>izap-elgg-bridge</plugin>
-      <priority>after</priority>
-    </requires>
+  <requires>
+    <type>priority</type>
+    <plugin>izap-elgg-bridge</plugin>
+    <priority>after</priority>
+  </requires>
     
-    <on_activate>
+  <on_activate>
       func_update_subtype
-    </on_activate>
+  </on_activate>
 
-    <category>media</category>
-    <admin_interface>advanced</admin_interface>
+  <category>media</category>
+  <admin_interface>advanced</admin_interface>
 
 </plugin_manifest>

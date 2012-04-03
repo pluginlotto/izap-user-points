@@ -13,6 +13,9 @@
  * Follow us on http://facebook.com/PluginLotto and http://twitter.com/PluginLotto
  */
 
+/**
+ * this is the page that performs the redeeming of offer that user bought
+ */
 class IzapRedeemOffer extends IzapObject {
 
   private $sqlite_file;
@@ -29,8 +32,10 @@ class IzapRedeemOffer extends IzapObject {
     @mkdir($CONFIG->dataroot . '/' . GLOBAL_IZAP_USER_POINTS_PLUGIN . '/');
   }
 
-  
-
+  /**
+   * gets the attributes of the entity
+   * @return type array
+   */
   public function getAttributesArray() {
     return array(
         'title' => array(),
@@ -42,10 +47,14 @@ class IzapRedeemOffer extends IzapObject {
         'per_unit_value' => array(),
         'point_bank_allowed' => array(),
         'partial_redemption_allowed' => array(),
-        'comments_on' =>array()
+        'comments_on' => array()
     );
   }
 
+  /**
+   * gets the url of the page
+   * @return type array
+   */
   public function getURL() {
     return IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
@@ -55,9 +64,14 @@ class IzapRedeemOffer extends IzapObject {
     ));
   }
 
+  /**
+   * calculates and checks if the user can buy a particular offer or not
+   * @param type $user_guid
+   * @return type boolean
+   */
   public function canUserBuy($user_guid = 0) {
     if (!elgg_is_logged_in()) {
-      return FALSE;
+      return False;
     }
 
     if (!$user_guid) {
@@ -66,17 +80,22 @@ class IzapRedeemOffer extends IzapObject {
 
     $user = get_user($user_guid);
     if (!($user instanceof ElggUser)) {
-      return FALSE;
+      return False;
     }
 
     $user_point = IzapUserPoints::getUserPoints($user);
     if ($user_point > $this->point_value) {
-      return TRUE;
+      return True;
     }
 
-    return FALSE;
+    return False;
   }
 
+  /**
+   * function to buy an offer
+   * @param type $price
+   * @return string 
+   */
   public function buyHref($price) {
     $action = IzapBase::getFormAction('buy_offer', GLOBAL_IZAP_USER_POINTS_PLUGIN);
 
@@ -91,10 +110,7 @@ class IzapRedeemOffer extends IzapObject {
       $action_string .='attributes[' . $var . ']=' . $val . '&';
     }
     $action_string = substr($action_string, 0, -1);
-
     $action = $action . '?' . $action_string;
-//echo elgg_add_action_tokens_to_url($action);exit;
-//    return elgg_add_action_tokens_to_url($action);
     return $action;
   }
 
@@ -103,13 +119,19 @@ class IzapRedeemOffer extends IzapObject {
 
     $offer_bought = $sqlite->execute("SELECT * from user_coupons where guid='" . $this->guid . "'");
     if ($offer_bought)
-      return FALSE;
+      return False;
     else {
-      if (elgg_is_admin_logged_in ())
-        return true;
+      if (elgg_is_admin_logged_in())
+        return True;
     }
   }
 
+  /**
+   * this function creates a new table in the sqlite so that elgg is used only for the more
+   * important data
+   * @param type $array
+   * @return type boolean
+   */
   public function pushToSqlite($array) {
     $sqlite = new IzapSqlite($this->sqlite_file);
     try {
@@ -126,7 +148,7 @@ class IzapRedeemOffer extends IzapObject {
                         coupon_price INTEGER(10),
                         time_registered INTEGER(10))");
     } catch (PDOException $e) {
-
+      
     }
 
     $query = 'INSERT INTO user_coupons (guid, coupon_code,offer_title,user_guid, username, used, expire_time,points_used,to_be_paid,coupon_price,time_registered)
@@ -147,12 +169,16 @@ class IzapRedeemOffer extends IzapObject {
     try {
       $success = $sqlite->execute($query);
     } catch (PDOException $e) {
-
+      
     }
 
     return $success;
   }
 
+  /**
+   * performs a delete function on coupons/offers
+   * @return type boolean
+   */
   public function delete() {
     $sqlite = new IzapSqlite($this->sqlite_file);
     try {
@@ -164,13 +190,22 @@ class IzapRedeemOffer extends IzapObject {
     return $success;
   }
 
+  /**
+   * gets the thumbnail of the offer created
+   * @param type $size
+   * @return string 
+   */
   public function getThumb($size= 'small') {
     $image = '<img src = "' . $this->getIconURL($size) . '"/>';
     return $image;
   }
 
-  
-public function getIconURL($size = 'small') {
+  /**
+   * displays the image thumb of displayed image in the detail page coupon
+   * @param type $size
+   * @return type int size
+   */
+  public function getIconURL($size = 'small') {
     return IzapBase::setHref(array(
         'context' => GLOBAL_IZAP_USER_POINTS_PAGEHANDLER,
         'action' => 'icon',
@@ -178,4 +213,5 @@ public function getIconURL($size = 'small') {
         'vars' => array($this->guid, $size,)
     )) . $this->time_updated . ".jpg";
   }
+
 }
