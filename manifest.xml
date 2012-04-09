@@ -27,7 +27,27 @@
     <plugin>izap-elgg-bridge</plugin>
     <priority>after</priority>
   </requires>
-    
+  
+  <screenshot>
+		<description>User-Points Screenshots</description>
+		<path>_graphics/user-points.png</path>
+	</screenshot>
+  
+  <screenshot>
+		<description>Create Offer Screenshot</description>
+		<path>_graphics/create_offer.png</path>
+	</screenshot>
+  
+  <screenshot>
+    <description>User Point Settings</description>  
+   <path>_graphics/user_point_setting.png</path>
+  </screenshot>
+  
+  <screenshot>
+    <description>Top Users listing</description>  
+    <path>_graphics/top_users.png</path>
+  </screenshot>
+  
   <on_activate>
       func_update_subtype
   </on_activate>

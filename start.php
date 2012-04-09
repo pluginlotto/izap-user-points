@@ -35,7 +35,8 @@ function func_izap_start_giving_points() {
   elgg_register_event_handler('login', 'user', 'func_izap_user_point_increment_on_login');
 
   $CONFIG->valid_types_for_points = array('object', 'group', 'annotations', 'annotation');
-
+  
+  elgg_register_event_handler('izap', 'link', 'izap_userpoints_link_hook');
   elgg_register_plugin_hook_handler('register', 'menu:user_hover', 'func_user_points_in_main_profile');
   elgg_extend_view('user/status', GLOBAL_IZAP_USER_POINTS_PLUGIN . '/points_in_listing');
 
@@ -117,7 +118,13 @@ function izap_update_coupon_status_user_points($coupon_code, $status = 'yes') {
   $query = 'UPDATE user_coupons SET used="' . $status . '" WHERE coupon_code = "' . $coupon_code . '"';
   return $sqlite->execute($query);
 }
-
+function izap_userpoints_link_hook() {
+  if (elgg_get_context() == GLOBAL_IZAP_USER_POINTS_PAGEHANDLER) {
+    elgg_extend_view('page/elements/footer', 'output/ilink');
+    return False;
+  }
+  return True;
+}
 function func_user_points_in_main_profile($hook, $type, $return, $params) {
 
   $user = $params['entity'];
