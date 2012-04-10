@@ -10,7 +10,7 @@
   </description>
   <website>http://www.pluginlotto.com/store</website>
   <copyright>(C) iZAP Web Solutions</copyright>
-  <licence>GNU Public Licence Version 2</licence>
+  <licence>GNU Public Licence Version 3</licence>
   <requires>
     <type>elgg_version</type>
     <version>2010030101</version>
