@@ -1,0 +1,14 @@
+Izap-user-points
+------------------
+
+## Installation instructions
+
+1. Grab izap-user-points from http://www.pluginlotto.com.
+2. Uncompress downloaded folder with the name "izap-user-points"
+3. Move that to mod.
+4. Go to admin panel, find plugin and click "Activate" button.
+5. Configure the plugin settings at the admin panel (ie you will set the number of points associated 
+   with each activity done on your website by the user, for eg. log in, creating blog, uploading video.)
+
+
+ 
